@@ -1,0 +1,24 @@
+server:
+  port: 8090
+  ssl:
+    enabled: true
+    key-store: classpath:rayit-config-server.jks
+    key-store-type: JKS
+    key-alias: config-server-key
+    key-store-password: changeit
+
+spring:
+  application:
+    # 和git里的文件名对应
+    name: demo1-config-client,demo2-config-client,demo-common
+  cloud:
+    config:
+      # 仓库分支
+      label: master
+      # DEV开发环境配置文件 | UAT测试环境 | PRD正式环境, 要求与git里的文件名对应
+      profile: DEV
+      # 指明配置服务中心的URL
+      uri: https://admin:${security.user.login.password}@localhost:8443
+#      uri: https://localhost:8443
+#      username: admin
+#      password: ${security.user.login.password}
